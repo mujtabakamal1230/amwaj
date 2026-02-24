@@ -2,8 +2,9 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { Button } from '@/components/ui/button';
 import { Phone } from 'lucide-react';
+import SimplePracticeAppointmentButton from '@/components/SimplePracticeAppointmentButton';
+import SimplePracticeContactButton from '@/components/SimplePracticeContactButton';
 
 export default function Header() {
   return (
@@ -43,9 +44,9 @@ export default function Header() {
             <a href="#faq" className="text-lg text-gray-700 hover:text-[#26C56D] transition-colors font-medium font-manrope">
             Why  amwaj
             </a>
-            <a href="#contact" className="text-lg text-gray-700 hover:text-[#26C56D] transition-colors font-medium font-manrope">
+            <SimplePracticeContactButton className="text-lg text-gray-700 hover:text-[#26C56D] transition-colors font-medium font-manrope">
             Contact us
-            </a>
+            </SimplePracticeContactButton>
           </motion.nav>
 
           <motion.div
@@ -54,10 +55,9 @@ export default function Header() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="flex items-center gap-4"
           >
-            <Button className="bg-[#26C56D] hover:bg-[#22b561] text-white rounded-full">
-              <Phone className="w-4 h-4 mr-2" />
-              Book Session
-            </Button>
+            <SimplePracticeAppointmentButton className="inline-flex items-center justify-center gap-2 bg-[#26C56D] hover:bg-[#22b561] text-white rounded-[18px] px-4 py-3 text-sm font-medium transition-colors">
+              Book Consultation
+            </SimplePracticeAppointmentButton>
           </motion.div>
         </motion.div>
       </div>

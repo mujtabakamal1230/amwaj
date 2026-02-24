@@ -1,6 +1,7 @@
 import SmoothScroll from '@/components/SmoothScroll';
 import './globals.css';
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import { Inter, Manrope, Outfit, Poppins } from 'next/font/google';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
@@ -36,6 +37,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} ${manrope.variable} ${poppins.variable} ${outfit.variable} ${inter.className}`}>
+      <Script src="https://widget-cdn.simplepractice.com/assets/integration-1.0.js" strategy="lazyOnload" />
       <SmoothScroll>
           <main>{children}</main>
         </SmoothScroll>

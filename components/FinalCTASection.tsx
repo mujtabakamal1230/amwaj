@@ -2,8 +2,8 @@
 
 import { motion } from 'framer-motion';
 import { fadeInUp, scaleIn } from '@/utils/animations';
-import Link from 'next/link';
 import { Instagram, Twitter, Linkedin, Youtube } from 'lucide-react';
+import SimplePracticeAppointmentButton from '@/components/SimplePracticeAppointmentButton';
 
 export default function FinalCTASection() {
   return (
@@ -30,12 +30,11 @@ export default function FinalCTASection() {
                 Carry This Alone
               </motion.h2>
               <motion.div {...scaleIn} transition={{ delay: 0.2 }}>
-                <Link
-                  href="#contact"
+                <SimplePracticeAppointmentButton
                   className="inline-block bg-[#26C56D] hover:bg-[#2e9a4a] text-white text-lg font-semibold px-8 py-4 rounded-[24px] transition-colors shadow-lg"
                 >
                   Book Consultation
-                </Link>
+                </SimplePracticeAppointmentButton>
               </motion.div>
             </div>
 

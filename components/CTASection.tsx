@@ -1,12 +1,10 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Phone, Mail, MessageCircle, Calendar } from 'lucide-react';
 import ParallaxSection from './ParallaxSection';
 import { fadeInUp, scaleIn } from '@/utils/animations';
-import { Button } from '@/components/ui/button';
 import Image from 'next/image';
-import Link from 'next/link';
+import SimplePracticeContactButton from '@/components/SimplePracticeContactButton';
 
 export default function CTASection() {
   return (
@@ -36,12 +34,11 @@ export default function CTASection() {
             You Matter To Us.<br /> 
             Reach Out Anytime.
           </h3>
-          <Link
-            href="#contact"
+          <SimplePracticeContactButton
             className="inline-block bg-[#26C56D] text-white px-8 py-4 rounded-[24px] font-semibold font-inter text-2xl hover:bg-[#2e9a4a] transition-colors shadow-lg hover:shadow-xl"
           >
             Contact Us
-          </Link>
+          </SimplePracticeContactButton>
         </div>
 
         {/* Right: Illustration */}

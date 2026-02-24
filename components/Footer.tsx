@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
 import { fadeInUp } from '@/utils/animations';
+import SimplePracticeContactButton from '@/components/SimplePracticeContactButton';
 
 export default function Footer() {
   const footerLinks = {
@@ -77,12 +78,18 @@ export default function Footer() {
             <ul className="space-y-3">
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
-                  <a
-                    href={link.href}
-                    className="text-gray-400 hover:text-[#26C56D] transition-colors"
-                  >
-                    {link.name}
-                  </a>
+                  {link.name === 'Contact' ? (
+                    <SimplePracticeContactButton className="text-gray-400 hover:text-[#26C56D] transition-colors">
+                      {link.name}
+                    </SimplePracticeContactButton>
+                  ) : (
+                    <a
+                      href={link.href}
+                      className="text-gray-400 hover:text-[#26C56D] transition-colors"
+                    >
+                      {link.name}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>
