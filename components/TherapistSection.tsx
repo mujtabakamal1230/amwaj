@@ -105,7 +105,7 @@ export default function TherapistSection() {
             
 
                 {/* Satisfied Customers card */}
-                <motion.div
+                {/* <motion.div
                   initial={{ opacity: 0, y: 12 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -131,7 +131,7 @@ export default function TherapistSection() {
                       <Plus className="w-4 h-4" />
                     </button>
                   </div>
-                </motion.div>
+                </motion.div> */}
               </div>
             </motion.div>
           </div>

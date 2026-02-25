@@ -1,11 +1,11 @@
 'use client';
 
 import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
-import { Flower2 } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
 import ParallaxSection from './ParallaxSection';
-import { fadeInUp, scaleIn, staggerContainer } from '@/utils/animations';
-import { useRef } from 'react';
+import { fadeInUp, scaleIn } from '@/utils/animations';
+import { useRef, useState, useEffect } from 'react';
 
 const cardShadow =
   '0 29.95px 12.39px 0 rgba(108, 113, 128, 0.01), 0 17.56px 10.33px 0 rgba(108, 113, 128, 0.04), 0 7.23px 7.23px 0 rgba(108, 113, 128, 0.07), 0 2.07px 4.13px 0 rgba(108, 113, 128, 0.08)';
@@ -46,10 +46,10 @@ function TextRevealWord({
   totalWords: number;
   isLast: boolean;
 }) {
-  // Calculate when this word should start and finish animating
-  // Each word animates over a portion of the scroll progress with slight overlap
-  const wordStart = wordIndex / totalWords;
-  const wordEnd = (wordIndex + 1) / totalWords;
+  // Compress reveal into first ~40% of scroll so more words highlight per scroll
+  const revealSpan = 0.4;
+  const wordStart = (wordIndex / totalWords) * revealSpan;
+  const wordEnd = ((wordIndex + 1) / totalWords) * revealSpan;
   
   // Create a transform that maps scroll progress to this word's animation progress
   // When scrollProgress < wordStart, progress is 0 (initial color)
@@ -60,43 +60,98 @@ function TextRevealWord({
     [0, 1]
   );
   
-  // Transform progress to color (0 = #3BA7D6, 1 = #106387)
+  // Transform progress to color (0 = #0B5778, 1 = #A1E2FF)
   // Clamp to ensure we stay within bounds
   const color = useTransform(wordProgress, (latest) => {
     const clamped = Math.max(0, Math.min(1, latest));
-    return interpolateColor('#3BA7D6', '#106387', clamped);
+    return interpolateColor('#A1E2FF', '#0B5778', clamped);
   });
   
   return (
-    <motion.span style={{ color }} initial={{ color: '#3BA7D6' }}>
+    <motion.span style={{ color }} initial={{ color: '#A1E2FF' }}>
       {word}{isLast ? '' : ' '}
     </motion.span>
   );
 }
 
+const CAROUSEL_GAP = 32;
+
 export default function FeelingsSection() {
   const textRef = useRef<HTMLParagraphElement>(null);
   const { scrollYProgress } = useScroll({
     target: textRef,
-    offset: ["start 0.9", "start 0.1"]
+    offset: ["start 0.85", "start 0.15"]
   });
+
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [itemsPerView, setItemsPerView] = useState(3);
+  const [cardWidth, setCardWidth] = useState(0);
+
+  useEffect(() => {
+    const updateDimensions = () => {
+      const perView = window.innerWidth >= 768 ? 3 : 1;
+      setItemsPerView(perView);
+      if (carouselRef.current) {
+        const w = carouselRef.current.offsetWidth;
+        setCardWidth((w - CAROUSEL_GAP * (perView - 1)) / perView);
+      }
+    };
+    updateDimensions();
+    const observer = new ResizeObserver(updateDimensions);
+    if (carouselRef.current) observer.observe(carouselRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   const feelings = [
     {
-      image: '/images/feeling-1.png',
-      title: "I can't stop overthinking. Everything feels like too much.",
+      tag: 'Growth',
+      image: '/images/feelings/feeling-1.png',
+      title: "“I react in ways I don’t understand. My past traumas keep showing up.”",
     },
     {
-      image: '/images/feeling-2.png',
-      title: "Some days I can't get out of bed. Other days, my mind won't stop racing.",
+      tag: 'Workflow',
+      image: '/images/feelings/feeling-2.png',
+      title: "“I don’t know where I belong. I’ve always felt between things.”",
     },
     {
-      image: '/images/feeling-3.png',
-      title: "I crave connecting with people, but I keep getting hurt or shutting down.",
+      image: '/images/feelings/feeling-3.png',
+      title: "“I can’t stop overthinking. Everything feels like too much.”",
+    },
+    {
+      tag: 'Operations',
+      image: '/images/feelings/feeling-4.png',
+      title: "“I don’t know what’s wrong. I just know I don’t feel okay.”",
+    },
+    {
+      tag: 'Operations',
+      image: '/images/feelings/feeling-5.png',
+      title: "“I hate how much I care. I hate how much I push people away.”",
+    },
+    {
+      image: '/images/feelings/feeling-6.png',
+      title: "“Some days I can’t get out of bed. Other days, my mind won’t stop racing.”",
+    },
+    {
+      image: '/images/feelings/feeling-7.png',
+      title: "“I crave connecting with people, but I keep getting hurt or shutting down.”",
     },
   ];
 
-  // Split the text into words
+  const maxIndex = Math.max(0, feelings.length - itemsPerView);
+  const [isPaused, setIsPaused] = useState(false);
+
+  const prev = () => setCurrentIndex(i => Math.max(0, i - 1));
+  const next = () => setCurrentIndex(i => (i >= maxIndex ? 0 : i + 1));
+
+  useEffect(() => {
+    if (maxIndex === 0 || isPaused) return;
+    const id = setInterval(() => {
+      setCurrentIndex(i => (i >= maxIndex ? 0 : i + 1));
+    }, 4000);
+    return () => clearInterval(id);
+  }, [maxIndex, isPaused]);
+
   const text = "You don't have to wait to feel heard and valued. At Amwaj, we offer therapy that respects your feelings, identity, and story – while helping you feel stronger, more stable, and more in control over time.";
   const words = text.split(' ');
 
@@ -113,46 +168,117 @@ export default function FeelingsSection() {
             </h2>
           </motion.div>
 
-          <motion.div
-            {...staggerContainer}
-            className="grid md:grid-cols-3 gap-8"
+          {/* Carousel */}
+          <div
+            className="relative"
+            ref={carouselRef}
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
           >
-            {feelings.map((feeling, index) => (
+            <div className="overflow-hidden">
               <motion.div
-                key={index}
-                {...scaleIn}
-                transition={{ delay: index * 0.2 }}
-                whileHover={{ y: -8, transition: { duration: 0.3 } }}
-                className="group relative border-[4px] border-[#F8F8F8] rounded-2xl"
+                className="flex"
+                animate={{ x: cardWidth > 0 ? -(currentIndex * (cardWidth + CAROUSEL_GAP)) : 0 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                drag={maxIndex > 0 ? 'x' : false}
+                dragConstraints={{
+                  left: -(maxIndex * (cardWidth + CAROUSEL_GAP)),
+                  right: 0,
+                }}
+                dragElastic={0.1}
+                onDragStart={() => setIsPaused(true)}
+                onDragEnd={(_, info) => {
+                  if (info.offset.x < -50) next();
+                  else if (info.offset.x > 50) prev();
+                  setIsPaused(false);
+                }}
+                style={{ gap: CAROUSEL_GAP }}
               >
-                <div
-                  className="bg-white rounded-2xl transition-all duration-300 h-full flex flex-col overflow-hidden"
-                  style={{ boxShadow: cardShadow }}
-                >
-                  <div className="relative w-full aspect-[4/3] bg-gray-50">
-                    <Image
-                      src={feeling.image}
-                      alt=""
-                      fill
-                      className="object-contain object-center"
-                    />
+                {feelings.map((feeling, index) => (
+                  <motion.div
+                    key={index}
+                    style={{
+                      width: cardWidth > 0
+                        ? cardWidth
+                        : `calc((100% - ${CAROUSEL_GAP * (itemsPerView - 1)}px) / ${itemsPerView})`,
+                      flexShrink: 0,
+                    }}
+                    {...scaleIn}
+                    transition={{ delay: index * 0.2 }}
+                    whileHover={{ y: -8, transition: { duration: 0.3 } }}
+                    className="group relative border-[4px] border-[#F8F8F8] rounded-2xl"
+                  >
                     <div
-                      className="absolute inset-x-0 -bottom-1 h-2/3 pointer-events-none"
-                      style={{
-                        background: 'linear-gradient(to top, #FFFFFF 0%, rgba(255,255,255,0.85) 25%, rgba(255,255,255,0.5) 55%, transparent 100%)',
-                      }}
-                    />
-                  </div>
-                  <div className='p-6'>
-
-                  <p className="text-2xl font-semibold font-inter text-black leading-relaxed">
-                    {feeling.title}
-                  </p>
-                  </div>
-                </div>
+                      className="bg-white rounded-2xl transition-all duration-300 h-full flex flex-col overflow-hidden"
+                      style={{ boxShadow: cardShadow }}
+                    >
+                      <div className="relative w-full aspect-[4/3] bg-gray-50">
+                        {feeling?.tag && 
+                        <div className="absolute top-4 right-4 bg-[#F0F0F0] px-4 py-1 rounded-full z-10">
+                          <span className="text-sm font-semibold font-inter text-black">{feeling?.tag}</span>
+                        </div>}
+                        <Image
+                          src={feeling.image}
+                          alt=""
+                          fill
+                          className="object-contain object-center"
+                        />
+                        <div
+                          className="absolute inset-x-0 -bottom-1 h-2/3 pointer-events-none"
+                          style={{
+                            background: 'linear-gradient(to top, #FFFFFF 0%, rgba(255,255,255,0.85) 25%, rgba(255,255,255,0.5) 55%, transparent 100%)',
+                          }}
+                        />
+                      </div>
+                      <div className="p-6">
+                        <p className="text-2xl font-semibold font-inter text-black leading-relaxed">
+                          {feeling.title}
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
               </motion.div>
-            ))}
-          </motion.div>
+            </div>
+
+            {/* Prev / Next buttons — only visible when there are pages to navigate */}
+            {maxIndex > 0 && (
+              <>
+                <button
+                  onClick={prev}
+                  disabled={currentIndex === 0}
+                  className="absolute -left-5 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center text-[#0B5778] disabled:opacity-30 transition-opacity hover:bg-[#F0FAFF]"
+                  aria-label="Previous"
+                >
+                  <ChevronLeft size={20} />
+                </button>
+                <button
+                  onClick={next}
+                  disabled={currentIndex === maxIndex}
+                  className="absolute -right-5 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center text-[#0B5778] disabled:opacity-30 transition-opacity hover:bg-[#F0FAFF]"
+                  aria-label="Next"
+                >
+                  <ChevronRight size={20} />
+                </button>
+              </>
+            )}
+          </div>
+
+          {/* Dot indicators */}
+          {maxIndex > 0 && (
+            <div className="flex justify-center gap-2 mt-6">
+              {Array.from({ length: maxIndex + 1 }).map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCurrentIndex(i)}
+                  aria-label={`Go to slide ${i + 1}`}
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    i === currentIndex ? 'w-6 bg-[#0B5778]' : 'w-2 bg-gray-300'
+                  }`}
+                />
+              ))}
+            </div>
+          )}
 
           <motion.div
             {...fadeInUp}
@@ -162,7 +288,7 @@ export default function FeelingsSection() {
             <div
               className="rounded-2xl p-10 md:p-12"
               style={{
-                background: 'linear-gradient(to top, #D1F1FF 0%, rgba(209, 241, 255, 0.6) 35%, rgba(209, 241, 255, 0.2) 65%, transparent 100%)',
+                background: 'linear-gradient(to top, #D1F1FF 0%, rgba(209, 241, 255, 0.6) 0%, transparent 60%)',
               }}
             >
               <img src="/images/care.png" alt="Flower" className="w-16 h-22 mx-auto mb-4 object-contain" />

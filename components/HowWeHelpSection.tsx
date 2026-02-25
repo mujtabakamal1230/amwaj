@@ -55,7 +55,7 @@ export default function HowWeHelpSection() {
   const imageY = useTransform(scrollYProgress, [0, 1], ["-20%", "20%"]);
 
   return (
-    <section className="py-24 relative overflow-hidden">
+    <section id="how-we-help" className="py-24 relative overflow-hidden">
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-50"
         style={{ backgroundImage: 'url(/images/help-bg.png)' }}
@@ -80,7 +80,7 @@ export default function HowWeHelpSection() {
             >
               <div className="relative overflow-hidden rounded-2xl h-full">
                 <motion.img
-                  src="https://images.pexels.com/photos/5699456/pexels-photo-5699456.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                  src="/images/how-we-help.png"
                   alt="Therapy Session"
                   className="w-full h-full object-cover block rounded-2xl"
                   style={{ y: imageY }}

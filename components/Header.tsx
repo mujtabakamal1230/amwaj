@@ -35,17 +35,17 @@ export default function Header() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="hidden md:flex items-center gap-10"
           >
-            <a href="#services" className="text-lg text-gray-700 hover:text-[#26C56D] transition-colors font-medium font-manrope">
+            <a href="#how-we-help" className="text-lg text-gray-700 hover:text-[#26C56D] transition-colors font-medium font-manrope">
             How we help
             </a>
-            <a href="#about" className="text-lg text-gray-700 hover:text-[#26C56D] transition-colors font-medium font-manrope">
+            <a href="#services" className="text-lg text-gray-700 hover:text-[#26C56D] transition-colors font-medium font-manrope">
             Services
             </a>
-            <a href="#faq" className="text-lg text-gray-700 hover:text-[#26C56D] transition-colors font-medium font-manrope">
-            Why  amwaj
+            <a href="#why-choose" className="text-lg text-gray-700 hover:text-[#26C56D] transition-colors font-medium font-manrope">
+            Why  Amwaj
             </a>
             <SimplePracticeContactButton className="text-lg text-gray-700 hover:text-[#26C56D] transition-colors font-medium font-manrope">
-            Contact us
+            Contact Us
             </SimplePracticeContactButton>
           </motion.nav>
 
