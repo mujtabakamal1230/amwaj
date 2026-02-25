@@ -13,7 +13,7 @@ export default function InsuranceSection() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             {...staggerContainer}
-            className="grid lg:grid-cols-2 gap-12 items-center mb-12"
+            className="grid lg:grid-cols-[45%_55%] gap-12 items-center mb-12"
           >
             {/* Left Column - Text Content */}
             <motion.div
@@ -44,11 +44,11 @@ export default function InsuranceSection() {
               className="flex flex-col gap-6"
             >
               {/* Row 1: Anthem, United Healthcare */}
-              <div className="flex flex-wrap items-center gap-8 justify-start">
+              <div className="flex flex-wrap items-center gap-8 justify-end">
                 <motion.div
                   {...fadeInUp}
                   transition={{ delay: 0.5 }}
-                  className="relative h-14 w-28 flex items-center justify-center shrink-0"
+                  className="relative h-14 w-[200px] flex items-center justify-center shrink-0"
                 >
                   <img
                     src="/images/logos/anthem.png"
@@ -59,7 +59,7 @@ export default function InsuranceSection() {
                 <motion.div
                   {...fadeInUp}
                   transition={{ delay: 0.6 }}
-                  className="relative h-14 w-36 flex items-center justify-center shrink-0"
+                  className="relative h-14 w-[200px] flex items-center justify-center shrink-0"
                 >
                   <img
                     src="/images/logos/united-healthcare.png"
@@ -70,11 +70,11 @@ export default function InsuranceSection() {
               </div>
 
               {/* Row 2: Cigna, BlueCross BlueShield, Aetna */}
-              <div className="flex flex-wrap items-center gap-8 justify-start">
+              <div className="flex flex-wrap items-center gap-2 justify-end">
                 <motion.div
                   {...fadeInUp}
                   transition={{ delay: 0.7 }}
-                  className="relative h-14 w-28 flex items-center justify-center shrink-0"
+                  className="relative h-14 w-[200px] flex items-center justify-center shrink-0"
                 >
                   <img
                     src="/images/logos/cigna.png"
@@ -85,7 +85,7 @@ export default function InsuranceSection() {
                 <motion.div
                   {...fadeInUp}
                   transition={{ delay: 0.8 }}
-                  className="relative h-14 w-36 flex items-center justify-center shrink-0"
+                  className="relative h-14 w-[200px] flex items-center justify-center shrink-0"
                 >
                   <img
                     src="/images/logos/bluecross.png"
@@ -96,7 +96,7 @@ export default function InsuranceSection() {
                 <motion.div
                   {...fadeInUp}
                   transition={{ delay: 0.9 }}
-                  className="relative h-14 w-24 flex items-center justify-center shrink-0"
+                  className="relative h-14 w-[200px] flex items-center justify-center shrink-0"
                 >
                   <img
                     src="/images/logos/aetna.png"

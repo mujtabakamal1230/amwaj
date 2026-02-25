@@ -20,8 +20,8 @@ export default function CTASection() {
     >
       <div className="grid md:grid-cols-[60%_1fr] gap-8 md:gap-12 items-center">
         {/* Left: Icon, heading, CTA */}
-        <div className="flex flex-col gap-4 items-start text-center md:text-left order-2 md:order-1">
-          <div className="inline-flex mb-6">
+        <div className="flex flex-col gap-8 items-start text-center md:text-left order-2 md:order-1">
+          <div className="inline-flex">
             <Image
               src="/images/cta-icon.png"
               alt=""
@@ -30,12 +30,12 @@ export default function CTASection() {
               className="object-contain"
             />
           </div>
-          <h3 className="text-3xl md:text-6xl font-bold font-manrope text-white mb-2">
+          <h3 className="text-3xl md:text-6xl font-bold font-manrope text-white">
             You Matter To Us.<br /> 
             Reach Out Anytime.
           </h3>
           <SimplePracticeContactButton
-            className="inline-block bg-[#26C56D] text-white px-8 py-4 rounded-[24px] font-semibold font-inter text-2xl hover:bg-[#2e9a4a] transition-colors shadow-lg hover:shadow-xl"
+            className="inline-block bg-[#26C56D] text-white px-8 py-4 rounded-[24px] font-semibold font-inter text-2xl hover:bg-[#2e9a4a] transition-colors shadow-lg hover:shadow-xl mt-1"
           >
             Contact Us
           </SimplePracticeContactButton>

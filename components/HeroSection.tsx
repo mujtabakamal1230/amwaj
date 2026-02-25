@@ -63,9 +63,9 @@ export default function HeroSection() {
           <motion.p
             {...fadeInLeft}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed font-inter max-w-3xl"
+            className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed font-inter max-w-xl"
           >
-            At Amwaj, we understand that life can feel overwhelming. Whether you're dealing with stress, anxiety, or just need someone to talk to, we offer therapy that respects your feelings, identity, and story.
+At Amwaj, we offer therapy in a calm, supportive space where you can talk openly, process difficult emotions, and feel more grounded over time.
           </motion.p>
 
           <motion.div

@@ -4,10 +4,11 @@ import { motion } from 'framer-motion';
 import { fadeInUp, scaleIn } from '@/utils/animations';
 import { Instagram, Twitter, Linkedin, Youtube } from 'lucide-react';
 import SimplePracticeAppointmentButton from '@/components/SimplePracticeAppointmentButton';
+import Image from 'next/image';
 
 export default function FinalCTASection() {
   return (
-    <section className="relative py-24 overflow-hidden">
+    <section className="relative py-24 pb-8 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           {...fadeInUp}
@@ -21,7 +22,7 @@ export default function FinalCTASection() {
         >
           <div className="flex-1 grid md:grid-cols-2 gap-8 p-8 md:p-12 lg:p-16">
             {/* Left: heading + CTA (blue area) */}
-            <div className="flex flex-col justify-center text-left">
+            <div className="flex flex-col justify-center text-left gap-8">
               <motion.h2
                 {...fadeInUp}
                 className="text-3xl md:text-5xl lg:text-6xl font-semibold font-manrope text-white mb-6 leading-tight"
@@ -43,7 +44,7 @@ export default function FinalCTASection() {
           </div>
 
           {/* Social icons + copyright */}
-          <div className="px-8 md:px-12 lg:px-16 pb-8 md:pb-12">
+          <div className="px-8 md:px-12 lg:px-16 pb-8 md:pb-4">
             <motion.div
               {...fadeInUp}
               transition={{ delay: 0.3 }}
@@ -53,41 +54,41 @@ export default function FinalCTASection() {
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-lg bg-white flex items-center justify-center text-gray-700 hover:opacity-90 transition-opacity"
+                className="w-16 h-16 rounded-lg bg-white flex items-center justify-center text-gray-700 hover:opacity-90 transition-opacity"
                 aria-label="Instagram"
               >
-                <Instagram className="w-5 h-5" />
+                <Image src="/images/icons/instagram.png" alt="Instagram" width={32} height={32} />
               </a>
               <a
                 href="https://twitter.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-lg bg-white flex items-center justify-center text-gray-700 hover:opacity-90 transition-opacity"
+                className="w-16 h-16 rounded-lg bg-white flex items-center justify-center text-gray-700 hover:opacity-90 transition-opacity"
                 aria-label="X (Twitter)"
               >
-                <Twitter className="w-5 h-5" />
+                <Image src="/images/icons/x.png" alt="Twitter" width={32} height={32} />
               </a>
               <a
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-lg bg-white flex items-center justify-center text-gray-700 hover:opacity-90 transition-opacity"
+                className="w-16 h-16 rounded-lg bg-white flex items-center justify-center text-gray-700 hover:opacity-90 transition-opacity"
                 aria-label="LinkedIn"
               >
-                <Linkedin className="w-5 h-5" />
+                <Image src="/images/icons/linkedin.png" alt="LinkedIn" width={32} height={32} />
               </a>
               <a
                 href="https://youtube.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-lg bg-white flex items-center justify-center text-gray-700 hover:opacity-90 transition-opacity"
+                className="w-16 h-16 rounded-lg bg-white flex items-center justify-center text-gray-700 hover:opacity-90 transition-opacity"
                 aria-label="YouTube"
               >
-                <Youtube className="w-5 h-5" />
+                <Image src="/images/icons/youtube.png" alt="YouTube" width={32} height={32} />
               </a>
             </motion.div>
-            <p className="text-center text-black font-manrope font-medium text-sm">
-              © Amwaj 2024. All rights reserved
+            <p className="text-center text-black font-manrope font-medium text-lg">
+              © Amwaj 2026. All rights reserved
             </p>
           </div>
         </motion.div>

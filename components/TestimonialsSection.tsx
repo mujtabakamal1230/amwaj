@@ -7,17 +7,17 @@ import { fadeInUp, scaleIn, staggerContainer } from '@/utils/animations';
 
 const items = [
   {
-    image: '/images/awaits-1.png',
+    image: '/images/awaits-1.jpg',
     text: 'A private, confidential space',
     borderColor: '#9AFFB0',
   },
   {
-    image: '/images/awaits-2.png',
+    image: '/images/awaits-2.jpg',
     text: 'Sensitivity to identity, faith, and life transitions',
     borderColor: '#F3E3A2',
   },
   {
-    image: '/images/awaits-3.png',
+    image: '/images/awaits-3.jpg',
     text: 'Sessions available in English and Arabic',
     borderColor: '#87E4F4',
   },
@@ -27,7 +27,7 @@ const items = [
     borderColor: '#A8B8F4',
   },
   {
-    image: '/images/awaits-5.png',
+    image: '/images/awaits-5.jpg',
     text: 'Trauma-informed therapy that respects family and cultural dynamics',
     borderColor: '#F9B2D4',
   },
