@@ -87,6 +87,9 @@ export default function FeelingsSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [itemsPerView, setItemsPerView] = useState(3);
   const [cardWidth, setCardWidth] = useState(0);
+  const [skipTransition, setSkipTransition] = useState(false);
+  const currentIndexRef = useRef(0);
+  currentIndexRef.current = currentIndex;
 
   useEffect(() => {
     const updateDimensions = () => {
@@ -138,11 +141,48 @@ export default function FeelingsSection() {
     },
   ];
 
-  const maxIndex = Math.max(0, feelings.length - itemsPerView);
+  const itemCount = feelings.length;
+  const extendedFeelings = [
+    ...feelings,
+    ...feelings,
+    ...feelings.slice(0, itemsPerView),
+  ];
+  const maxIndex = Math.max(0, extendedFeelings.length - itemsPerView);
+  const realMaxIndex = Math.max(0, itemCount - itemsPerView);
   const [isPaused, setIsPaused] = useState(false);
 
-  const prev = () => setCurrentIndex(i => Math.max(0, i - 1));
-  const next = () => setCurrentIndex(i => (i >= maxIndex ? 0 : i + 1));
+  const prev = () => {
+    if (currentIndex === 0) {
+      setSkipTransition(true);
+      setCurrentIndex(maxIndex);
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setSkipTransition(false);
+          setCurrentIndex(maxIndex - 1);
+        });
+      });
+    } else {
+      setCurrentIndex(i => i - 1);
+    }
+  };
+
+  const next = () => {
+    if (currentIndex >= maxIndex) {
+      setSkipTransition(true);
+      setCurrentIndex(0);
+      requestAnimationFrame(() => setSkipTransition(false));
+    } else {
+      setCurrentIndex(i => i + 1);
+    }
+  };
+
+  const handleTransitionComplete = () => {
+    if (currentIndexRef.current >= maxIndex) {
+      setSkipTransition(true);
+      setCurrentIndex(0);
+      requestAnimationFrame(() => setSkipTransition(false));
+    }
+  };
 
   useEffect(() => {
     if (maxIndex === 0 || isPaused) return;
@@ -156,7 +196,7 @@ export default function FeelingsSection() {
   const words = text.split(' ');
 
   return (
-    <section className="py-24 relative overflow-hidden">
+    <section className="py-20 relative overflow-hidden">
       <ParallaxSection speed={0.4}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
@@ -179,7 +219,11 @@ export default function FeelingsSection() {
               <motion.div
                 className="flex"
                 animate={{ x: cardWidth > 0 ? -(currentIndex * (cardWidth + CAROUSEL_GAP)) : 0 }}
-                transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                transition={
+                  skipTransition
+                    ? { duration: 0 }
+                    : { type: 'spring', stiffness: 300, damping: 30, onComplete: handleTransitionComplete }
+                }
                 drag={maxIndex > 0 ? 'x' : false}
                 dragConstraints={{
                   left: -(maxIndex * (cardWidth + CAROUSEL_GAP)),
@@ -194,7 +238,7 @@ export default function FeelingsSection() {
                 }}
                 style={{ gap: CAROUSEL_GAP }}
               >
-                {feelings.map((feeling, index) => (
+                {extendedFeelings.map((feeling, index) => (
                   <motion.div
                     key={index}
                     style={{
@@ -246,16 +290,14 @@ export default function FeelingsSection() {
               <>
                 <button
                   onClick={prev}
-                  disabled={currentIndex === 0}
-                  className="absolute -left-5 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center text-[#0B5778] disabled:opacity-30 transition-opacity hover:bg-[#F0FAFF]"
+                  className="absolute -left-5 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center text-[#0B5778] transition-opacity hover:bg-[#F0FAFF]"
                   aria-label="Previous"
                 >
                   <ChevronLeft size={20} />
                 </button>
                 <button
                   onClick={next}
-                  disabled={currentIndex === maxIndex}
-                  className="absolute -right-5 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center text-[#0B5778] disabled:opacity-30 transition-opacity hover:bg-[#F0FAFF]"
+                  className="absolute -right-5 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center text-[#0B5778] transition-opacity hover:bg-[#F0FAFF]"
                   aria-label="Next"
                 >
                   <ChevronRight size={20} />
@@ -265,15 +307,15 @@ export default function FeelingsSection() {
           </div>
 
           {/* Dot indicators */}
-          {maxIndex > 0 && (
+          {realMaxIndex > 0 && (
             <div className="flex justify-center gap-2 mt-6">
-              {Array.from({ length: maxIndex + 1 }).map((_, i) => (
+              {Array.from({ length: realMaxIndex + 1 }).map((_, i) => (
                 <button
                   key={i}
                   onClick={() => setCurrentIndex(i)}
                   aria-label={`Go to slide ${i + 1}`}
                   className={`h-2 rounded-full transition-all duration-300 ${
-                    i === currentIndex ? 'w-6 bg-[#0B5778]' : 'w-2 bg-gray-300'
+                    i === currentIndex % (realMaxIndex + 1) ? 'w-6 bg-[#0B5778]' : 'w-2 bg-gray-300'
                   }`}
                 />
               ))}

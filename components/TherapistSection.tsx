@@ -20,7 +20,7 @@ export default function TherapistSection() {
   return (
     <section
       id="about"
-      className="py-24 relative overflow-hidden"
+      className="py-20 relative overflow-hidden"
       style={{
         background: 'linear-gradient(to right, #FFFFFF 0%, #FFFFFF 60%, #E0F7FA 100%)',
       }}

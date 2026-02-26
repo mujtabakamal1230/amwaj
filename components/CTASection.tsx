@@ -8,7 +8,7 @@ import SimplePracticeContactButton from '@/components/SimplePracticeContactButto
 
 export default function CTASection() {
   return (
-    <section id="contact" className="py-24 relative overflow-hidden">
+    <section id="contact" className="py-20 relative overflow-hidden">
 
       <ParallaxSection speed={0.2}>
         <div className="max-w-7xl mx-auto relative z-10">
@@ -25,17 +25,17 @@ export default function CTASection() {
             <Image
               src="/images/cta-icon.png"
               alt=""
-              width={80}
-              height={80}
+              width={60}
+              height={60}
               className="object-contain"
             />
           </div>
-          <h3 className="text-3xl md:text-6xl font-bold font-manrope text-white">
+          <h3 className="text-3xl md:text-4xl font-bold font-manrope text-white">
             You Matter To Us.<br /> 
             Reach Out Anytime.
           </h3>
           <SimplePracticeContactButton
-            className="inline-block bg-[#26C56D] text-white px-8 py-4 rounded-[24px] font-semibold font-inter text-2xl hover:bg-[#2e9a4a] transition-colors shadow-lg hover:shadow-xl mt-1"
+            className="inline-block bg-[#26C56D] text-white px-8 py-4 rounded-[24px] font-semibold font-inter text-xl hover:bg-[#2e9a4a] transition-colors shadow-lg hover:shadow-xl mt-1"
           >
             Contact Us
           </SimplePracticeContactButton>

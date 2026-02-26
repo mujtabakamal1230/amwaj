@@ -36,7 +36,7 @@ export default function ServicesSection() {
   return (
     <section
       id="services"
-      className="py-24 relative overflow-hidden"
+      className="py-20 relative overflow-hidden"
     >
       <ParallaxSection speed={0.3}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
