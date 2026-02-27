@@ -71,7 +71,7 @@ At Amwaj, we offer therapy in a calm, supportive space where you can talk openly
           <motion.div
             {...fadeInUp}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex flex-col sm:flex-row gap-4"
+            className="flex flex-col sm:flex-row gap-4 items-start"
           >
             <SimplePracticeAppointmentButton
               className="bg-[#26C56D] hover:bg-[#22b561] text-white font-inter font-semibold text-lg px-8 py-3 group rounded-[18px]"
