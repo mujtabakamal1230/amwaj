@@ -1,2 +1,2 @@
 # amwaj
-amwaj landing apge
+amwaj landing page
