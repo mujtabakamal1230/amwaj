@@ -36,7 +36,7 @@ export default function FAQSection() {
     <section id="faq" className="py-20 relative overflow-hidden">
 
       <ParallaxSection speed={0.3}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4">
           <div className="rounded-[24px] overflow-hidden bg-[linear-gradient(to_bottom_right,white_40%,#6EBEE2_160%)] py-12 px-4 sm:px-6 lg:px-8">
           <motion.div
             {...fadeInUp}

@@ -15,10 +15,10 @@ export default function CTASection() {
           <motion.div
       {...fadeInUp}
       transition={{ delay: 0.8 }}
-      className="mt-16 rounded-3xl p-8 md:p-12 shadow-2xl overflow-hidden bg-[linear-gradient(180deg,#93DDE9,#36ABBE)]"
+      className="rounded-3xl px-8 md:px-12 py-4 shadow-2xl overflow-hidden bg-[linear-gradient(180deg,#93DDE9,#36ABBE)]"
 
     >
-      <div className="grid md:grid-cols-[60%_1fr] gap-8 md:gap-12 items-center">
+      <div className="grid md:grid-cols-[60%_1fr] gap-8 items-center">
         {/* Left: Icon, heading, CTA */}
         <div className="flex flex-col gap-8 items-start text-center md:text-left order-2 md:order-1">
           <div className="inline-flex">
@@ -50,9 +50,9 @@ export default function CTASection() {
           <Image
             src="/images/choose.png"
             alt="Reach out anytime - we are here for you"
-            width={480}
-            height={320}
-            className="object-contain w-full max-w-md"
+            width={360}
+            height={300}
+            className="object-contain w-full max-w-sm"
           />
         </motion.div>
       </div>

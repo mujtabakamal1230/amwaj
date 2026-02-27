@@ -146,9 +146,9 @@ export default function WhyChooseSection() {
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
           >
-            <div className="py-8 overflow-hidden">
+            <div className="py-6 overflow-hidden">
               <motion.div
-                className="flex"
+                className="flex items-stretch"
                 animate={{ x: cardWidth > 0 ? -(currentIndex * (cardWidth + CAROUSEL_GAP)) : 0 }}
                 transition={
                   skipTransition
@@ -181,26 +181,17 @@ export default function WhyChooseSection() {
                     {...scaleIn}
                     transition={{ delay: index * 0.05 }}
                     whileHover={{ y: -8, transition: { duration: 0.3 } }}
-                    className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#26C56D]/30 relative group"
+                    className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#26C56D]/30 relative group flex flex-col"
                   >
-                    <Quote className="w-12 h-12 text-[#26C56D]/20 mb-4 group-hover:text-[#26C56D]/40 transition-colors" />
+                    <Quote className="w-12 h-12 text-[#26C56D]/20 mb-4 group-hover:text-[#26C56D]/40 transition-colors shrink-0" />
 
-                    <p className="text-gray-700 leading-relaxed mb-6 text-lg">
+                    <p className="text-gray-700 leading-relaxed text-lg flex-grow min-h-0">
                       &ldquo;{testimonial.text}&rdquo;
                     </p>
 
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#26C56D] to-emerald-500 flex items-center justify-center text-white font-bold overflow-hidden">
-                        <img
-                          src={testimonial.image}
-                          alt={testimonial.author}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      <div>
-                        <div className="font-bold text-gray-900">{testimonial.author}</div>
-                        <div className="text-sm text-gray-600">{testimonial.role}</div>
-                      </div>
+                    <div className="mt-6 pt-4 border-t border-gray-100">
+                      <div className="font-bold text-gray-900">{testimonial.author}</div>
+                      <div className="text-sm text-gray-600">{testimonial.role}</div>
                     </div>
 
                     <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#26C56D] to-emerald-500 rounded-b-2xl transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
