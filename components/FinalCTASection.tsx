@@ -11,7 +11,7 @@ export default function FinalCTASection() {
     <section className="relative overflow-hidden">
         <motion.div
           {...fadeInUp}
-          className="relative overflow-hidden h-[530px] flex flex-col pt-16"
+          className="relative overflow-hidden h-[530px] flex flex-col pt-16 px-4 md:px-0"
           style={{
             backgroundImage: 'url(/images/footer-bg.png)',
             backgroundSize: 'cover',
@@ -55,37 +55,37 @@ export default function FinalCTASection() {
                   href="https://instagram.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-16 h-16 rounded-lg bg-white flex items-center justify-center text-gray-700 hover:opacity-90 transition-opacity"
+                  className="w-12 h-12 rounded-lg bg-white flex items-center justify-center text-gray-700 hover:opacity-90 transition-opacity"
                   aria-label="Instagram"
                 >
-                  <Image src="/images/icons/instagram.png" alt="Instagram" width={32} height={32} />
+                  <Image src="/images/icons/instagram.png" alt="Instagram" width={28} height={28} />
                 </a>
                 <a
                   href="https://twitter.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-16 h-16 rounded-lg bg-white flex items-center justify-center text-gray-700 hover:opacity-90 transition-opacity"
+                  className="w-12 h-12 rounded-lg bg-white flex items-center justify-center text-gray-700 hover:opacity-90 transition-opacity"
                   aria-label="X (Twitter)"
                 >
-                  <Image src="/images/icons/x.png" alt="Twitter" width={32} height={32} />
+                  <Image src="/images/icons/x.png" alt="Twitter" width={28} height={28} />
                 </a>
                 <a
                   href="https://linkedin.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-16 h-16 rounded-lg bg-white flex items-center justify-center text-gray-700 hover:opacity-90 transition-opacity"
+                  className="w-12 h-12 rounded-lg bg-white flex items-center justify-center text-gray-700 hover:opacity-90 transition-opacity"
                   aria-label="LinkedIn"
                 >
-                  <Image src="/images/icons/linkedin.png" alt="LinkedIn" width={32} height={32} />
+                  <Image src="/images/icons/linkedin.png" alt="LinkedIn" width={28} height={28} />
                 </a>
                 <a
                   href="https://youtube.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-16 h-16 rounded-lg bg-white flex items-center justify-center text-gray-700 hover:opacity-90 transition-opacity"
+                  className="w-12 h-12 rounded-lg bg-white flex items-center justify-center text-gray-700 hover:opacity-90 transition-opacity"
                   aria-label="YouTube"
                 >
-                  <Image src="/images/icons/youtube.png" alt="YouTube" width={32} height={32} />
+                  <Image src="/images/icons/youtube.png" alt="YouTube" width={28} height={28} />
                 </a>
               </motion.div>
               <p className="text-center text-black font-manrope font-medium text-lg">

@@ -257,10 +257,7 @@ export default function FeelingsSection() {
                       style={{ boxShadow: cardShadow }}
                     >
                       <div className="relative w-full aspect-[4/3] bg-gray-50">
-                        {feeling?.tag && 
-                        <div className="absolute top-4 right-4 bg-[#F0F0F0] px-4 py-1 rounded-full z-10">
-                          <span className="text-sm font-semibold font-inter text-black">{feeling?.tag}</span>
-                        </div>}
+                       
                         <Image
                           src={feeling.image}
                           alt=""
@@ -337,8 +334,7 @@ export default function FeelingsSection() {
           
               <p
                 ref={textRef}
-                className="font-manrope font-extrabold text-center max-w-6xl mx-auto"
-                style={{ fontSize: '43.87px', lineHeight: '59.6px', letterSpacing: '0px' }}
+                className="text-2xl md:text-[44px]  md:leading-[59.6px] font-manrope font-extrabold text-center max-w-6xl mx-auto"
               >
                 {words.map((word, index) => (
                   <TextRevealWord
