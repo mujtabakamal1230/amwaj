@@ -11,11 +11,11 @@ export default function FinalCTASection() {
     <section className="relative overflow-hidden">
         <motion.div
           {...fadeInUp}
-          className="relative overflow-hidden h-[620px] flex flex-col pt-20"
+          className="relative overflow-hidden h-[530px] flex flex-col pt-16"
           style={{
             backgroundImage: 'url(/images/footer-bg.png)',
             backgroundSize: 'cover',
-            backgroundPosition: 'center',
+            backgroundPosition: 'bottom',
             boxShadow: '0 10.8px 16.21px 0 rgba(0, 0, 0, 0.16)',
           }}
         >
@@ -23,10 +23,10 @@ export default function FinalCTASection() {
 
             <div className="flex-1 grid md:grid-cols-2 gap-8">
               {/* Left: heading + CTA (blue area) */}
-              <div className="flex flex-col justify-center text-left gap-8">
+              <div className="flex flex-col text-left gap-8">
                 <motion.h2
                   {...fadeInUp}
-                  className="text-2xl md:text-5xl font-semibold font-manrope text-white mb-6 leading-tight"
+                  className="text-2xl md:text-[56px] font-semibold font-manrope text-white leading-tight"
                 >
                   You Don&apos;t Have To<br />
                   Carry This Alone
