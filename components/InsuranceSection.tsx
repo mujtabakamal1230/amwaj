@@ -33,7 +33,7 @@ export default function InsuranceSection() {
                 transition={{ delay: 0.3 }}
                 className="text-lg md:text-xl text-gray-600"
               >
-                At Amwaj, we work with most major insurance providers to make therapy accessible for everyone.
+                Amwaj works with most major insurance providers to make therapy accessible for everyone.
               </motion.p>
             </motion.div>
 
@@ -129,7 +129,7 @@ export default function InsuranceSection() {
               </div>
             </motion.div>
           </motion.div>
-      
+
         </div>
       </ParallaxSection>
     </section>

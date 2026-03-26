@@ -15,32 +15,32 @@ function interpolateColor(color1: string, color2: string, factor: number): strin
   // Convert hex to RGB
   const hex1 = color1.replace('#', '');
   const hex2 = color2.replace('#', '');
-  
+
   const r1 = parseInt(hex1.substring(0, 2), 16);
   const g1 = parseInt(hex1.substring(2, 4), 16);
   const b1 = parseInt(hex1.substring(4, 6), 16);
-  
+
   const r2 = parseInt(hex2.substring(0, 2), 16);
   const g2 = parseInt(hex2.substring(2, 4), 16);
   const b2 = parseInt(hex2.substring(4, 6), 16);
-  
+
   // Interpolate
   const r = Math.round(r1 + (r2 - r1) * factor);
   const g = Math.round(g1 + (g2 - g1) * factor);
   const b = Math.round(b1 + (b2 - b1) * factor);
-  
+
   return `rgb(${r}, ${g}, ${b})`;
 }
 
 // Component for individual word with color animation
-function TextRevealWord({ 
-  word, 
-  scrollProgress, 
-  wordIndex, 
+function TextRevealWord({
+  word,
+  scrollProgress,
+  wordIndex,
   totalWords,
-  isLast 
-}: { 
-  word: string; 
+  isLast
+}: {
+  word: string;
   scrollProgress: MotionValue<number>;
   wordIndex: number;
   totalWords: number;
@@ -50,7 +50,7 @@ function TextRevealWord({
   const revealSpan = 0.4;
   const wordStart = (wordIndex / totalWords) * revealSpan;
   const wordEnd = ((wordIndex + 1) / totalWords) * revealSpan;
-  
+
   // Create a transform that maps scroll progress to this word's animation progress
   // When scrollProgress < wordStart, progress is 0 (initial color)
   // When scrollProgress > wordEnd, progress is 1 (final color)
@@ -59,14 +59,14 @@ function TextRevealWord({
     [wordStart, wordEnd],
     [0, 1]
   );
-  
+
   // Transform progress to color (0 = #0B5778, 1 = #A1E2FF)
   // Clamp to ensure we stay within bounds
   const color = useTransform(wordProgress, (latest) => {
     const clamped = Math.max(0, Math.min(1, latest));
     return interpolateColor('#A1E2FF', '#0B5778', clamped);
   });
-  
+
   return (
     <motion.span style={{ color }} initial={{ color: '#A1E2FF' }}>
       {word}{isLast ? '' : ' '}
@@ -248,7 +248,7 @@ export default function FeelingsSection() {
                       flexShrink: 0,
                     }}
                     {...scaleIn}
-                    transition={{ delay: index * 0.2 }}
+                    transition={{ delay: 0.1 }}
                     whileHover={{ y: -8, transition: { duration: 0.3 } }}
                     className="group relative border-[4px] border-[#F8F8F8] rounded-2xl"
                   >
@@ -257,7 +257,7 @@ export default function FeelingsSection() {
                       style={{ boxShadow: cardShadow }}
                     >
                       <div className="relative w-full aspect-[4/3] bg-gray-50">
-                       
+
                         <Image
                           src={feeling.image}
                           alt=""
@@ -311,9 +311,8 @@ export default function FeelingsSection() {
                   key={i}
                   onClick={() => setCurrentIndex(i)}
                   aria-label={`Go to slide ${i + 1}`}
-                  className={`h-2 rounded-full transition-all duration-300 ${
-                    i === currentIndex % (realMaxIndex + 1) ? 'w-6 bg-[#0B5778]' : 'w-2 bg-gray-300'
-                  }`}
+                  className={`h-2 rounded-full transition-all duration-300 ${i === currentIndex % (realMaxIndex + 1) ? 'w-6 bg-[#0B5778]' : 'w-2 bg-gray-300'
+                    }`}
                 />
               ))}
             </div>
@@ -331,7 +330,7 @@ export default function FeelingsSection() {
               }}
             >
               <img src="/images/care.png" alt="Flower" className="w-16 h-22 mx-auto mb-4 object-contain" />
-          
+
               <p
                 ref={textRef}
                 className="text-2xl md:text-[44px]  md:leading-[59.6px] font-manrope font-extrabold text-center max-w-6xl mx-auto"

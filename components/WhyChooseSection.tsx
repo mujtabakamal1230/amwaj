@@ -44,14 +44,14 @@ export default function WhyChooseSection() {
       image: 'https://images.pexels.com/photos/3796810/pexels-photo-3796810.jpeg?auto=compress&cs=tinysrgb&w=400'
     },
     {
-      text: 'You can tell they really want to help. They take the time to understand what you\'re going through and work with you to find what actually helps you feel better.',
-      author: 'Ahmed K.',
-      role: 'Trauma Recovery',
-      image: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400'
+      text: 'I have been seeing Tebarak for about a year and a half now.Therapy is something I\'ve pushed away for so many years out of fear, anxiety, and shame.I feel so lucky to have found care with T.Having weekly sessions (or any session) with my therapist was something I never thought I\'d be brave enough to do.I have been able to discover so much about myself and patterns of thinking and actively work with Tebarak on how to take care of myself.Starting therapy and getting set up with an amazing provider is one of the things I am most proud of in my life.',
+      author: 'Mary Herzog',
+      role: 'Individual Therapy Client',
+      image: 'https://images.pexels.com/photos/3796810/pexels-photo-3796810.jpeg?auto=compress&cs=tinysrgb&w=400'
     },
     {
-      text: 'They are really kind and caring, and they know what they\'re doing. I felt supported the whole time.',
-      author: 'Sarah M.',
+      text: 'I\'ve been seeing Tebarak every week for almost a year now and wanted to say that she is the best therapist that I\'ve ever talked to. I feel heard and we\'ve made so much progress and continue to do so every single session. She is incredibly insightful and is a fantastic listener. I\'d be completely lost without her. Thank you so much, You\'ve really changed my life for the better and I appreciate you. The care support staff are excellent and friendly as well.',
+      author: 'Td chewy',
       role: 'Individual Therapy Client',
       image: 'https://images.pexels.com/photos/3796810/pexels-photo-3796810.jpeg?auto=compress&cs=tinysrgb&w=400'
     }
@@ -146,7 +146,7 @@ export default function WhyChooseSection() {
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
           >
-            <div className="py-6 overflow-hidden">
+            <div className="py-6 px-6 -mx-6 overflow-hidden">
               <motion.div
                 className="flex items-stretch"
                 animate={{ x: cardWidth > 0 ? -(currentIndex * (cardWidth + CAROUSEL_GAP)) : 0 }}
@@ -227,9 +227,8 @@ export default function WhyChooseSection() {
                   key={i}
                   onClick={() => setCurrentIndex(i)}
                   aria-label={`Go to slide ${i + 1}`}
-                  className={`h-2 rounded-full transition-all duration-300 ${
-                    i === currentIndex % (realMaxIndex + 1) ? 'w-6 bg-[#26C56D]' : 'w-2 bg-gray-300'
-                  }`}
+                  className={`h-2 rounded-full transition-all duration-300 ${i === currentIndex % (realMaxIndex + 1) ? 'w-6 bg-[#26C56D]' : 'w-2 bg-gray-300'
+                    }`}
                 />
               ))}
             </div>
