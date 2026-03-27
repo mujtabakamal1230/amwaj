@@ -44,14 +44,8 @@ export default function WhyChooseSection() {
       image: 'https://images.pexels.com/photos/3796810/pexels-photo-3796810.jpeg?auto=compress&cs=tinysrgb&w=400'
     },
     {
-      text: 'I have been seeing Tebarak for about a year and a half now.Therapy is something I\'ve pushed away for so many years out of fear, anxiety, and shame.I feel so lucky to have found care with T.Having weekly sessions (or any session) with my therapist was something I never thought I\'d be brave enough to do.I have been able to discover so much about myself and patterns of thinking and actively work with Tebarak on how to take care of myself.Starting therapy and getting set up with an amazing provider is one of the things I am most proud of in my life.',
+      text: 'I avoided therapy for years, but working with Tebarak helped me understand myself and build healthier patterns. Starting therapy was one of the best decisions I’ve made',
       author: 'Mary Herzog',
-      role: 'Individual Therapy Client',
-      image: 'https://images.pexels.com/photos/3796810/pexels-photo-3796810.jpeg?auto=compress&cs=tinysrgb&w=400'
-    },
-    {
-      text: 'I\'ve been seeing Tebarak every week for almost a year now and wanted to say that she is the best therapist that I\'ve ever talked to. I feel heard and we\'ve made so much progress and continue to do so every single session. She is incredibly insightful and is a fantastic listener. I\'d be completely lost without her. Thank you so much, You\'ve really changed my life for the better and I appreciate you. The care support staff are excellent and friendly as well.',
-      author: 'Td chewy',
       role: 'Individual Therapy Client',
       image: 'https://images.pexels.com/photos/3796810/pexels-photo-3796810.jpeg?auto=compress&cs=tinysrgb&w=400'
     }
