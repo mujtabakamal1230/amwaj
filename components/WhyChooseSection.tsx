@@ -184,7 +184,7 @@ export default function WhyChooseSection() {
                     </p>
 
                     <div className="mt-6 pt-4 border-t border-gray-100">
-                      <div className="font-bold text-gray-900">{testimonial.author}</div>
+                      <div className="font-bold text-gray-900 blur-sm select-none">{testimonial.author}</div>
                       <div className="text-sm text-gray-600">{testimonial.role}</div>
                     </div>
 
