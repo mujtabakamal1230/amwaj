@@ -88,39 +88,31 @@ export default function Header() {
       </motion.header>
 
       {/* Mobile dropdown menu */}
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            key="mobile-menu"
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.2 }}
-            className="fixed top-[84px] left-4 right-4 z-40 rounded-2xl bg-white shadow-[0_8px_32px_rgba(0,0,0,0.12)] px-6 py-6 flex flex-col gap-5 md:hidden"
+      <motion.div
+        initial={false}
+        animate={menuOpen ? { opacity: 1, y: 0, display: 'flex' } : { opacity: 0, y: -8, transitionEnd: { display: 'none' } }}
+        transition={{ duration: 0.2 }}
+        className="fixed top-[84px] left-4 right-4 z-40 rounded-2xl bg-white shadow-[0_8px_32px_rgba(0,0,0,0.12)] px-6 py-6 flex flex-col gap-5 md:hidden"
+      >
+        {navLinks.map(({ href, label }) => (
+          <a
+            key={href}
+            href={href}
+            onClick={closeMenu}
+            className="text-lg text-gray-800 hover:text-[#26C56D] transition-colors font-medium font-manrope"
           >
-            {navLinks.map(({ href, label }) => (
-              <a
-                key={href}
-                href={href}
-                onClick={closeMenu}
-                className="text-lg text-gray-800 hover:text-[#26C56D] transition-colors font-medium font-manrope"
-              >
-                {label}
-              </a>
-            ))}
-            <div onClick={closeMenu}>
-              <SimplePracticeContactButton className="text-lg text-gray-800 hover:text-[#26C56D] transition-colors font-medium font-manrope">
-                Contact Us
-              </SimplePracticeContactButton>
-            </div>
-            <div className="pt-2 border-t border-gray-100">
-              <SimplePracticeAppointmentButton className="w-full inline-flex items-center justify-center gap-2 bg-[#26C56D] hover:bg-[#22b561] text-white rounded-[18px] px-4 py-3 text-sm font-medium transition-colors">
-                Book Consultation
-              </SimplePracticeAppointmentButton>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            {label}
+          </a>
+        ))}
+        <SimplePracticeContactButton className="text-lg text-gray-800 hover:text-[#26C56D] transition-colors font-medium font-manrope">
+          Contact Us
+        </SimplePracticeContactButton>
+        <div className="pt-2 border-t border-gray-100">
+          <SimplePracticeAppointmentButton className="w-full inline-flex items-center justify-center gap-2 bg-[#26C56D] hover:bg-[#22b561] text-white rounded-[18px] px-4 py-3 text-sm font-medium transition-colors">
+            Book Consultation
+          </SimplePracticeAppointmentButton>
+        </div>
+      </motion.div>
     </>
   );
 }
