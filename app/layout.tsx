@@ -42,7 +42,7 @@ export const metadata: Metadata = {
       'Meet Tebarak Al Shamsy, MS, LPC, Founder of Amwaj Therapy Center. Compassionate therapy services for individuals, couples, and families.',
     images: [
       {
-        url: 'https://amwajtherapy.org/images/og-image.jpg',
+        url: '/images/og-image.jpg',
         width: 1200,
         height: 630,
         alt: 'Meet Your Therapist - Tebarak Al Shamsy | Amwaj Therapy Center',
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     title: 'Amwaj Therapy Center | Professional Therapy & Mental Health Support',
     description:
       'Meet Tebarak Al Shamsy, MS, LPC, Founder of Amwaj Therapy Center.',
-    images: ['https://amwajtherapy.org/images/og-image.jpg'],
+    images: ['/images/og-image.jpg'],
   },
   alternates: {
     canonical: 'https://amwajtherapy.org',
